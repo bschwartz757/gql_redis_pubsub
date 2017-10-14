@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- 1 -->
+    <h4 v-if="loading">Loading...</h4>
     <link-item
       v-for="link in allLinks"
       :key="link.id"
@@ -9,27 +11,27 @@
 </template>
 
 <script>
+  // 2
+  import { ALL_LINKS_QUERY } from '../constants/graphql'
   import LinkItem from './LinkItem'
 
   export default {
     name: 'LinkList',
     data () {
       return {
-        allLinks: [
-          {
-            id: '1',
-            description: 'The Coolest GraphQL Backend 😎',
-            url: 'https://www.graph.cool'
-          }, {
-            id: '2',
-            description: 'The Best GraphQL Client',
-            url: 'http://dev.apollodata.com/'
-          }
-        ]
+        // 3
+        allLinks: [],
+        loading: 0
       }
     },
     components: {
       LinkItem
+    },
+    // 4
+    apollo: {
+      allLinks: {
+        query: ALL_LINKS_QUERY
+      }
     }
   }
 </script>
