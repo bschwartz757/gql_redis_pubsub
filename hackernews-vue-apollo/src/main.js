@@ -11,13 +11,24 @@ import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 import router from './router'
 import App from './App'
-
+import { GC_USER_ID, GC_AUTH_TOKEN } from './constants/settings'
 Vue.config.productionTip = false
 
 // 3
 const networkInterface = createBatchingNetworkInterface({
   uri: 'https://api.graph.cool/simple/v1/cj8nyb2bx0e440142pv1vlr5s'
 })
+
+networkInterface.use([{
+  applyBatchMiddleware (req, next) {
+    if (!req.options.headers) {
+      req.options.headers = {}
+    }
+    const token = localStorage.getItem(GC_AUTH_TOKEN)
+    req.options.headers.authorization = token ? `Bearer ${token}` : null
+    next()
+  }
+}])
 
 // 4
 const apolloClient = new ApolloClient({
@@ -36,11 +47,17 @@ const apolloProvider = new VueApollo({
   }
 })
 
+// 1
+let userId = localStorage.getItem(GC_USER_ID)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  // 7
   apolloProvider,
   router,
+  // 2
+  data: {
+    userId
+  },
   render: h => h(App)
 })

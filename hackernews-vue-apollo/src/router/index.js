@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import AppLogin from '../components/AppLogin'
 // 1
 import CreateLink from '../components/CreateLink'
 import LinkList from '../components/LinkList'
@@ -17,6 +17,10 @@ export default new Router({
     {
       path: '/create',
       component: CreateLink
+    },
+    {
+      path: '/login',
+      component: AppLogin
     }
   ],
     // 3
