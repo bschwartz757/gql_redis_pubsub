@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <link-list></link-list>
+    <create-link></create-link>
   </div>
 </template>
 
 <script>
   import LinkList from './components/LinkList'
-
+  import CreateLink from './components/CreateLink'
   export default {
     name: 'app',
     components: {
+      CreateLink,
       LinkList
     }
   }
