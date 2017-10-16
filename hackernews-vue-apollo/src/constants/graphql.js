@@ -9,29 +9,40 @@ export const ALL_LINKS_QUERY = gql`
       createdAt
       url
       description
+      postedBy {
+        id
+        name
+      }
+      votes {
+        id
+        user {
+          id
+        }
+      }
     }
   }
 `
 
 // 1
 export const CREATE_LINK_MUTATION = gql`
-mutation CreateLinkMutation($description: String!, $url: String!, $postedById: ID!) {
-  createLink(
-    description: $description,
-    url: $url,
-    postedById: $postedById
-  ) {
-    id
-    createdAt
-    url
-    description
-    postedBy {
+  mutation CreateLinkMutation($description: String!, $url: String!, $postedById: ID!) {
+    createLink(
+      description: $description,
+      url: $url,
+      postedById: $postedById
+    ) {
       id
-      name
+      createdAt
+      url
+      description
+      postedBy {
+        id
+        name
+      }
     }
   }
-}
 `
+
 export const CREATE_USER_MUTATION = gql`
   mutation CreateUserMutation($name: String!, $email: String!, $password: String!) {
     createUser(
@@ -70,4 +81,23 @@ export const SIGNIN_USER_MUTATION = gql`
       }
     }
   }
+`
+
+export const CREATE_VOTE_MUTATION = gql`
+mutation CreateVoteMutation($userId: ID!, $linkId: ID!) {
+  createVote(userId: $userId, linkId: $linkId) {
+    id
+    link {
+      votes {
+        id
+        user {
+          id
+        }
+      }
+    }
+    user {
+      id
+    }
+  }
+}
 `

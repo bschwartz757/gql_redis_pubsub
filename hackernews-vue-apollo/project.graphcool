@@ -1,7 +1,7 @@
 # project: cj8nyb2bx0e440142pv1vlr5s
-# version: 4
+# version: 5
 
-type File implements Node {
+type File @model {
   contentType: String!
   createdAt: DateTime!
   id: ID! @isUnique
@@ -12,16 +12,17 @@ type File implements Node {
   url: String! @isUnique
 }
 
-type Link implements Node {
+type Link @model {
   createdAt: DateTime!
   description: String!
   id: ID! @isUnique
   updatedAt: DateTime!
   url: String!
   postedBy: User @relation(name: "UsersLinks")
+  votes: [Vote!]! @relation(name: "VotesOnLink")
 }
 
-type User implements Node {
+type User @model {
   createdAt: DateTime!
   id: ID! @isUnique
   email: String @isUnique
@@ -29,4 +30,11 @@ type User implements Node {
   name: String!
   password: String
   links: [Link!]! @relation(name: "UsersLinks")
+  votes: [Vote!]! @relation(name: "UsersVotes")
+}
+
+type Vote @model {
+  id: ID! @isUnique
+  user: User! @relation(name: "UsersVotes")
+  link: Link! @relation(name: "VotesOnLink")
 }
