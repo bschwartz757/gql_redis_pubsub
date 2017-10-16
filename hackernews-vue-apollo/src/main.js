@@ -11,7 +11,10 @@ import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 import router from './router'
 import App from './App'
-import { GC_USER_ID, GC_AUTH_TOKEN } from './constants/settings'
+import {
+  GC_USER_ID,
+  GC_AUTH_TOKEN
+} from './constants/settings'
 Vue.config.productionTip = false
 
 // 3

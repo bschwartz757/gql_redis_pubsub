@@ -1,16 +1,8 @@
 <template>
   <div>
     <div class="flex flex-column mt3">
-      <input
-        class="mb2"
-        v-model="description"
-        type="text"
-        placeholder="A description for the link">
-      <input
-        class="mb2"
-        v-model="url"
-        type="text"
-        placeholder="The URL for the link">
+      <input class="mb2" v-model="description" type="text" placeholder="A description for the link">
+      <input class="mb2" v-model="url" type="text" placeholder="The URL for the link">
     </div>
     <button @click="createLink()">Submit</button>
   </div>
@@ -53,7 +45,7 @@ export default {
           store.writeQuery({ query: ALL_LINKS_QUERY, data })
         }
       }).then((data) => {
-        this.$router.push({path: '/'})
+        this.$router.push({ path: '/' })
       }).catch((error) => {
         console.error(error)
         this.newDescription = newDescription
