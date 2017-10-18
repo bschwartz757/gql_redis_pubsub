@@ -1,0 +1,9 @@
+[submodule "redis-graphql-pubsub"]
+	path = redis-graphql-pubsub
+	url = git@github.com:bschwartz757/redis-graphql-pubsub.git
+[submodule "minikube-cluster"]
+	path = minikube-cluster
+	url = git@github.com:bschwartz757/minikube-cluster.git
+[submodule "GitHunt-API"]
+	path = GitHunt-API
+	url = git@github.com:davidyaha/GitHunt-API.git
