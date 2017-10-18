@@ -13,7 +13,11 @@
 
 <script>
 // 2
-import { ALL_LINKS_QUERY, NEW_LINKS_SUBSCRIPTION, NEW_VOTES_SUBSCRIPTION } from '../constants/graphql'
+import {
+  ALL_LINKS_QUERY,
+  NEW_LINKS_SUBSCRIPTION,
+  NEW_VOTES_SUBSCRIPTION
+} from '../constants/graphql'
 import LinkItem from './LinkItem'
 
 export default {
